@@ -69,7 +69,7 @@ const secondWord = [
   'never give up',
   'ふわふわと漂う',
   '三角と四角になる'
-]
+];
 
 function sumCodeNum(userName) {
   // 全文字のコード番号を取得してそれを足し合わせる
