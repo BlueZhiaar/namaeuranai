@@ -93,7 +93,10 @@ function sumCodeNum(userName) {
  * 
  */
 function sumCodeAndMonthAndDay(userName,m,d){
- 
+ //NaNだった時にアラート
+ if(isNaN(m) || isNaN(d)) {
+   alert('月日は半角数字で入力してください');
+ }
   return sumCodeNum(userName) + m + d;
 }
 
