@@ -48,7 +48,7 @@ assessmentButton.onclick = () => {
   anchor.setAttribute('href', hrefValue);
   anchor.className = 'twitter-hashtag-button';
   anchor.setAttribute('data-text', result);
-  anchor.innerText = 'Tweet #今日の名前占い #占い結果';
+  anchor.innerText = 'Tweet #今日の名前占い';
   tweetDivided.appendChild(anchor);
 
   // widgets.js の設定
@@ -62,13 +62,19 @@ const firstWord = [
   `信念は`,
   '崇高な目標は',
   '概念は',
-  '果実は'
+  '果実は',
+  '酒の肴は',
+  'こだわりのイカは',
+  '素朴な太陽は'
 ];
 const secondWord = [
   `浮かぶ`,
   'never give up',
   'ふわふわと漂う',
-  '三角と四角になる'
+  '三角と四角になる',
+  '黒くなったり白くなったりする',
+  '繊細さを極める',
+  '白米の上に乗る'
 ];
 
 function sumCodeNum(userName) {
@@ -87,7 +93,23 @@ function sumCodeNum(userName) {
  * 
  */
 function sumCodeAndMonthAndDay(userName,m,d){
-  return sumCodeNum(userName) + parseInt(m) + parseInt(d);
+  if(!(isInt(m) && isInt(d))){
+    alert('月日は半角数字で入力してください');
+  }else {
+    if(!(0 < m && m < 13) || !(0 < d && d < 32)){
+      alert('月日は実際に存在する月日を入力してください');
+    }
+  }
+  return sumCodeNum(userName) + m + d;
+}
+
+/**
+ 引数がintの時trueを返す
+ @param {}
+ @return {boolean}
+ */
+function isInt(num){
+  return !isNaN(num);
 }
 
 /**
@@ -102,20 +124,25 @@ function getWord(n,a) {
   return a[num];
 }
 
+
+
+
 /**
  * 名前と月日と配列二つを引数にして、表示する占い結果の内容を返す
  * @param {string,integer,integer,array,array}
  * @return {string}
  */
 function getResult(un,m,d,fw,sw) {
+  
   //インプットの合計の値を算出する
   let num = sumCodeAndMonthAndDay(un,m,d,fw,sw);
   //firstwordを算出する
   let fword = getWord(num,fw);
   console.log(`num=${num}fw=${fw}`);
-  //secondwordを算出する
-  let sword = getWord(num,sw);
-  console.log(`num=${num}sw=${sw}`);
+  //secondwordを算出する3を足して ２で割ったあたいから
+  let sumanddiv = Math.floor((num + 3) / 2);
+  let sword = getWord(sumanddiv,sw);
+  console.log(`sumanddiv=${sumanddiv}sw=${sw}`);
 
   return fword + sword;
 }
