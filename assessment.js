@@ -93,13 +93,7 @@ function sumCodeNum(userName) {
  * 
  */
 function sumCodeAndMonthAndDay(userName,m,d){
-  if(!(isInt(m) && isInt(d))){
-    alert('月日は半角数字で入力してください');
-  }else {
-    if(!(0 < m && m < 13) || !(0 < d && d < 32)){
-      alert('月日は実際に存在する月日を入力してください');
-    }
-  }
+ 
   return sumCodeNum(userName) + m + d;
 }
 
@@ -134,6 +128,7 @@ function getWord(n,a) {
  */
 function getResult(un,m,d,fw,sw) {
   
+  
   //インプットの合計の値を算出する
   let num = sumCodeAndMonthAndDay(un,m,d,fw,sw);
   //firstwordを算出する
@@ -146,3 +141,5 @@ function getResult(un,m,d,fw,sw) {
 
   return fword + sword;
 }
+
+
